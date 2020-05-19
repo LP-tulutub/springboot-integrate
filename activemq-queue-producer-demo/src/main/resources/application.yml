@@ -1,0 +1,30 @@
+server:
+  port: 10001 # 端口
+spring:
+  application:
+    name: activemq-queue-producer-demo # 服务名称
+  activemq:
+    broker-url: failover:(tcp://192.168.1.125:61616,tcp://192.168.1.126:61616,tcp://192.168.1.127:61616) # 设置连接的 activemq 服务器
+    close-timeout: 15s # 连接等待时长
+    non-blocking-redelivery: false # 是否在回滚回滚消息之前停止消息传递。这意味着当启用此命令时，消息顺序不会被保留
+    send-timeout: 0 # 等待消息发送响应的时间，设置为0等待永远
+    in-memory: true # 默认代理URL是否应该在内存中，如果指定了显式代理，则忽略此值
+    user: admin # 用户名
+    password: admin # 密码
+    packages:
+      trust-all: true # 是否信任所有包
+      trusted: # 要信任的特定包的逗号分隔列表（当不信任所有包时）
+    pool:
+      block-if-full: true # 当连接请求和池满时是否阻塞，设置 false 会抛 JMSException 异常
+      block-if-full-timeout: -1ms # 如果池满，则在抛出异常前阻塞时间
+      enabled: false # 是否用 Pooledconnectionfactory 代替普通的 ConnectionFactory
+      idle-timeout: 30s # 连接空闲超时
+      max-connections: 1 # 最大连接数
+      max-sessions-per-connection: 500 # 每个连接的有效会话的最大数目
+      time-between-expiration-check: -1ms # 在空闲连接清除线程之间运行的时间；当为负数时，没有空闲连接驱逐线程运行
+      use-anonymous-producers: true # 是否只使用一个 MessageProducer
+  jms:
+    pub-sub-domain: false # false 是 Queue；true 是 Topic
+
+
+myqueue: boot-activemq-queue

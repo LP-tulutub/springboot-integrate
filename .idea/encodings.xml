@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-all-consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-all-consumer2" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-all-producer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-consumer-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-producer-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-queue-consumer-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-queue-producer-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-topic-consumer-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/activemq-topic-producer-demo" charset="UTF-8" />
+  </component>
+</project>

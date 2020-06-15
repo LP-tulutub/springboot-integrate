@@ -18,6 +18,9 @@
     <module>activemq-all-consumer</module>
     <module>activemq-all-producer</module>
       <module>activemq-all-consumer2</module>
+      <module>redis-cluster</module>
+    <module>rocketmq-all-producer</module>
+    <module>rocketmq-all-consumer</module>
   </modules>
 
   <name>Maven</name>

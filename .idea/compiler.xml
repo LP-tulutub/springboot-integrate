@@ -6,15 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="activemq-queue-producer-demo" />
+        <module name="activemq-queue-consumer-demo" />
         <module name="activemq-consumer-demo" />
         <module name="activemq-all-consumer2" />
         <module name="activemq-topic-producer-demo" />
         <module name="activemq-producer-demo" />
         <module name="activemq-all-producer" />
         <module name="activemq-topic-consumer-demo" />
+        <module name="activemq-queue-producer-demo" />
         <module name="activemq-all-consumer" />
-        <module name="activemq-queue-consumer-demo" />
+        <module name="redis-cluster" />
+        <module name="rocketmq-all-consumer" />
+        <module name="rocketmq-all-producer" />
       </profile>
     </annotationProcessing>
   </component>
@@ -29,6 +32,9 @@
       <module name="activemq-queue-producer-demo" options="-parameters" />
       <module name="activemq-topic-consumer-demo" options="-parameters" />
       <module name="activemq-topic-producer-demo" options="-parameters" />
+      <module name="redis-cluster" options="-parameters" />
+      <module name="rocketmq-all-consumer" options="-parameters" />
+      <module name="rocketmq-all-producer" options="-parameters" />
       <module name="springboot-integrate" options="-parameters" />
     </option>
   </component>

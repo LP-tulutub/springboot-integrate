@@ -21,6 +21,8 @@
       <module>redis-cluster</module>
     <module>rocketmq-all-producer</module>
     <module>rocketmq-all-consumer</module>
+      <module>dubbo-zookeeper-producer</module>
+    <module>dubbo-zookeeper-consumer</module>
   </modules>
 
   <name>Maven</name>

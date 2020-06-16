@@ -6,18 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="activemq-queue-consumer-demo" />
-        <module name="activemq-consumer-demo" />
-        <module name="activemq-all-consumer2" />
-        <module name="activemq-topic-producer-demo" />
-        <module name="activemq-producer-demo" />
         <module name="activemq-all-producer" />
-        <module name="activemq-topic-consumer-demo" />
-        <module name="activemq-queue-producer-demo" />
-        <module name="activemq-all-consumer" />
-        <module name="redis-cluster" />
+        <module name="activemq-topic-producer-demo" />
+        <module name="activemq-queue-consumer-demo" />
+        <module name="activemq-all-consumer2" />
         <module name="rocketmq-all-consumer" />
+        <module name="activemq-producer-demo" />
         <module name="rocketmq-all-producer" />
+        <module name="activemq-topic-consumer-demo" />
+        <module name="dubbo-zookeeper-consumer" />
+        <module name="dubbo-zookeeper-producer" />
+        <module name="activemq-queue-producer-demo" />
+        <module name="redis-cluster" />
+        <module name="activemq-all-consumer" />
+        <module name="activemq-consumer-demo" />
       </profile>
     </annotationProcessing>
   </component>
@@ -32,6 +34,8 @@
       <module name="activemq-queue-producer-demo" options="-parameters" />
       <module name="activemq-topic-consumer-demo" options="-parameters" />
       <module name="activemq-topic-producer-demo" options="-parameters" />
+      <module name="dubbo-zookeeper-consumer" options="-parameters" />
+      <module name="dubbo-zookeeper-producer" options="-parameters" />
       <module name="redis-cluster" options="-parameters" />
       <module name="rocketmq-all-consumer" options="-parameters" />
       <module name="rocketmq-all-producer" options="-parameters" />

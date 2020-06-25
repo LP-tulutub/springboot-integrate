@@ -14,6 +14,9 @@
         <module name="activemq-producer-demo" />
         <module name="rocketmq-all-producer" />
         <module name="activemq-topic-consumer-demo" />
+        <module name="dubbo-zk-seata-RM1" />
+        <module name="dubbo-zk-seata-RM2" />
+        <module name="dubbo-zk-seata-TM" />
         <module name="dubbo-zookeeper-consumer" />
         <module name="dubbo-zookeeper-producer" />
         <module name="activemq-queue-producer-demo" />
@@ -34,6 +37,9 @@
       <module name="activemq-queue-producer-demo" options="-parameters" />
       <module name="activemq-topic-consumer-demo" options="-parameters" />
       <module name="activemq-topic-producer-demo" options="-parameters" />
+      <module name="dubbo-zk-seata-RM1" options="-parameters" />
+      <module name="dubbo-zk-seata-RM2" options="-parameters" />
+      <module name="dubbo-zk-seata-TM" options="-parameters" />
       <module name="dubbo-zookeeper-consumer" options="-parameters" />
       <module name="dubbo-zookeeper-producer" options="-parameters" />
       <module name="redis-cluster" options="-parameters" />

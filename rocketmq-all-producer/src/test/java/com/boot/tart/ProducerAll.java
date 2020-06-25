@@ -17,6 +17,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -127,7 +128,7 @@ public class ProducerAll {
      * 事务安全
      */
     @Test
-    public void test09() throws InterruptedException {
+    public void test09() throws InterruptedException, IOException {
         // 开启服务才会回查
         Message<MyUser> message = MessageBuilder.withPayload(new MyUser(1, "张三", 22, "飞翔")).build();
         Message<MyUser> message2 = MessageBuilder.withPayload(new MyUser(2, "李四", 23, "起飞")).build();
@@ -135,7 +136,7 @@ public class ProducerAll {
         this.rocketMQTemplate.sendMessageInTransaction("springboot-mq-test09", message, 1);
         this.rocketMQTemplate.sendMessageInTransaction("springboot-mq-test09", message2, 2);
         this.rocketMQTemplate.sendMessageInTransaction("springboot-mq-test09", message3, 3);
-
+        System.in.read();
     }
 
     /**

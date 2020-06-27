@@ -26,6 +26,9 @@
     <module>dubbo-zk-seata-TM</module>
     <module>dubbo-zk-seata-RM1</module>
     <module>dubbo-zk-seata-RM2</module>
+      <module>dubbo-zk-tcc-seata-TM</module>
+    <module>dubbo-zk-tcc-seata-RM1</module>
+    <module>dubbo-zk-tcc-seata-RM2</module>
   </modules>
 
   <name>Maven</name>

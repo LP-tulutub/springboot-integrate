@@ -1,0 +1,253 @@
+server:
+  port: 10019 # 端口
+spring:
+  application:
+    name: dubbo-zk-tcc-seata-RM1 # 服务名称
+  main:
+    allow-bean-definition-overriding: true
+  shardingsphere:
+    datasource:
+      names: mdb1,mdb2,mdb3,sdb1,sdb2,sdb3
+      mdb1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.1.20:3306/db1?characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&useUnicode=false
+        username: root
+        password: A18716296148
+      mdb2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.1.20:3306/db2?characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&useUnicode=false
+        username: root
+        password: A18716296148
+      mdb3:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.1.20:3306/db3?characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&useUnicode=false
+        username: root
+        password: A18716296148
+      sdb1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.1.21:3306/db1?characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&useUnicode=false
+        username: root
+        password: A18716296148
+      sdb2:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.1.21:3306/db2?characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&useUnicode=false
+        username: root
+        password: A18716296148
+      sdb3:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.1.21:3306/db3?characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&useUnicode=false
+        username: root
+        password: A18716296148
+    sharding:
+      master-slave-rules:
+        ds1:
+          master-data-source: mdb1
+          slave_data-source: sdb1
+        ds2:
+          master-data-source: mdb2
+          slave_data-source: sdb2
+        ds3:
+          master-data-source: mdb3
+          slave_data-source: sdb3
+      default-database-strategy:
+        inline:
+          sharding-column: ID
+          algorithm-expression: mdb${ID % 3 + 1}
+      tables:
+        admin:
+          actual-data-nodes: mdb$->{1..3}.admin
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: admin
+        goods:
+          actual-data-nodes: mdb$->{1..3}.goods
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: goods
+        miaosha_goods:
+          actual-data-nodes: mdb$->{1..3}.miaosha_goods
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: miaosha_goods
+        miaosha_message:
+          actual-data-nodes: mdb$->{1..3}.miaosha_message
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: miaosha_message
+        miaosha_message_user:
+          actual-data-nodes: mdb$->{1..3}.miaosha_message_user
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: miaosha_message_user
+        miaosha_order:
+          actual-data-nodes: mdb$->{1..3}.miaosha_order
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: miaosha_order
+        miaosha_user:
+          actual-data-nodes: mdb$->{1..3}.miaosha_user
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: miaosha_user
+        order_info:
+          actual-data-nodes: mdb$->{1..3}.order_info
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: order_info
+        user:
+          actual-data-nodes: mdb$->{1..3}.user
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: user
+        undo_log:
+          actual-data-nodes: mdb$->{1..3}.undo_log
+          key-generator:
+            column: ID
+            type: SNOWFLAKE
+          table-strategy:
+            inline:
+              sharding-column: ID
+              algorithm-expression: undo_log
+      binding-tables: admin,goods,miaosha_goods,miaosha_message,miaosha_message_user,miaosha_order,miaosha_user,order_info,user,undo_log
+
+# mybatis-plus 配置
+mybatis-plus:
+  type-aliases-package: com.boot.pojo # 自动起别名
+  mapper-locations: classpath*:/mapper/*.xml # 如果mapper的xml文件保存到的是resources下mapper下
+  configuration:
+    map-underscore-to-camel-case: true # 驼峰名适配
+dubbo:
+  application:
+    id: dubbo-zk-tcc-seata-RM1
+    name: dubbo-zk-tcc-seata-RM1 # dubbo 名称
+    qos-enable: true
+    qos-port: 33339
+    logger: slf4j # # 日志输出方式，可选：slf4j jcl log4j jdk
+  registry:
+    address: zookeeper://192.168.1.125:2181?backup=192.168.1.126:2181,192.168.1.127:2181 # 注册中心服务器地址，如果地址没有端口缺省为9090，同一集群内的多个地址用逗号分隔（必填）
+    port: 2181 # 注册中心缺省端口，当address没有带端口时使用此端口做为缺省值（9090）
+    protocol: zookeeper # 注册中心地址协议，支持dubbo  http  local三种协议（dubbo）
+    client: zkclient # Zookeeper客户端，可选：zkclient  curator
+    check: true # 注册中心不存在时，是否报错
+    # group: dubbo_develop # 设置Zookeeper的根节点，不设置将使用无根树
+    transporter: netty # 网络传输方式，可选mina netty
+    timeout: 100000 # 注册中心请求超时时间(毫秒)
+  protocol:
+    id: server
+    name: dubbo
+    port: 20889
+    status: server
+    threadpool: cached # 线程池类型，可选：fixed  cached
+    threads: 100 # 服务线程池大小(固定大小)
+    accesslog: true # 设为true，将向logger中输出访问日志，也可填写访问日志文件路径，直接把访问日志输出到指定文件
+  scan:
+    base-packages: com.boot.service.impl
+
+logging:
+  file:
+    path: E:/logs/spring-integrate/dubbo-zk-tcc-seata-RM1.log
+# seata
+seata:
+  enabled: true # 是否开启 spring-boot 自动装配
+  application-id: dubbo-zk-tcc-seata-RM1
+  tx-service-group: my_mybatis_group
+  enable-auto-data-source-proxy: true # 是否开启数据源自动代理 seata-spring-boot-starter(SSBS)专有配置
+  #use-jdk-proxy: false # 是否使用 JDK 代理作为数据源自动代理的实现方式
+  client:
+    rm:
+      async-commit-buffer-limit: 10000 # 异步提交缓存队列长度，默认 10000，二阶段提交成功，RM 异步清理 undo 队列
+      report-retry-count: 5 # 一阶段结果上报 TC 重试次数，默认 5 次
+      table-meta-check-enable: false # 自动刷新缓存中的表结构，默认 false
+      report-success-enable: false # 是否上报一阶段成功
+      lock:
+        retry-interval: 10 # 校验或占用全局锁重试间隔，默认 10，单位毫秒
+        retry-times: 30 # 校验或占用全局锁重试次数，默认 30
+        retry-policy-branch-rollback-on-conflict: true # 分支事务与其它全局回滚事务冲突时锁策略，默认 true，优先释放本地锁让回滚成功
+    tm:
+      commit-retry-count: 5 # 一阶段全局提交结果上报 TC 重试次数，默认 1 次，建议大于 1
+      rollback-retry-count: 5 # 一阶段全局回滚结果上报 TC 重试次数，默认 1 次，建议大于 1
+    undo:
+      data-validation: true # 二阶段回滚镜像校验，默认 true 开启，false 关闭
+      log-serialization: jackson # undo 序列化方式，默认 jackson
+      log-table: undo_log # 自定义 undo 表名，默认 undo_log
+    log:
+      exceptionRate: 100 # 日志异常输出概率，默认 100，目前用于 undo 回滚失败时异常堆栈输出，百分之一的概率输出，回滚失败基本是脏数据，无需输出堆栈占用硬盘空间
+  service:
+    vgroup-mapping:
+      my_mybatis_group: default # 事务群组集群名
+    grouplist:
+      default: 192.168.1.121:8091 # TC 服务列表，仅注册中心为 file 时使用
+    #enable-degrade: false # 降级开关（功能待实现）
+    disable-global-transaction: false # 全局事务开关，默认 false 为开启，true 为关闭
+  transport:
+    shutdown:
+      wait: 3
+    thread-factory:
+      boss-thread-prefix: NettyBoss
+      worker-thread-prefix: NettyServerNIOWorker
+      server-executor-thread-prefix: NettyServerBizHandler
+      share-boss-worker: false
+      client-selector-thread-prefix: NettyClientSelector
+      client-selector-thread-size: 1
+      client-worker-thread-prefix: NettyClientWorkerThread
+      worker-thread-size: default
+      boss-thread-size: 1
+    type: TCP
+    server: NIO
+    heartbeat: true # client 和 server 通信心跳检测开关，默认 true 开启
+    serialization: seata # client 和 server 通信编解码方式，seata（ByteBuf）、protobuf、kryo、hession，默认 seata
+    compressor: none # client 和 server 通信数据压缩方式，none、gzip，默认 none
+    enable-client-batch-send-request: true
+  config:
+    type: file
+  registry:
+    type: file
+    zk:
+      cluster: seata-server
+      server-addr: 192.168.1.125:2181
+      session-timeout: 6000
+      connect-timeout: 2000
+      username: ""
+      password: ""

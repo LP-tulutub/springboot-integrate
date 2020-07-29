@@ -1,0 +1,44 @@
+server:
+  port: 10021
+
+spring:
+  application:
+    name: springcloud-alibaba-producer
+  profiles:
+    active: dev # dev 表示开发环境；test 表示测试环境
+  cloud:
+    nacos:
+      server-addr: 192.168.200.10 # Nacos 服务注册中心地址，keepactived 虚拟地址
+      username: nacos
+      password: nacos
+      discovery:
+        group: DEV_GROUP
+        namespace: 9b4310de-71c5-4dcd-9e0b-52672b3ce897
+      config:
+        file-extension: yaml
+        group: DEV_GROUP
+        namespace: 9b4310de-71c5-4dcd-9e0b-52672b3ce897
+    sentinel:
+      transport:
+        dashboard: 192.168.1.133:8080 # 配置 Sentinel dashboard 地址
+        port: 10023 # 默认端口，假如被占用会自动从 10023 开始依次 +1，最终确定未被占用的端口
+        client-ip: 192.168.1.106 # 虚拟机访问 windows 地址
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 192.168.200.10
+            dataId: springcloud-alibaba-producer
+            groupId: DEV_GROUP
+            data-type: json
+            rule-type: flow
+            namespace: 9b4310de-71c5-4dcd-9e0b-52672b3ce897
+
+# 激活Sentinel对Feign的支持
+feign:
+  sentinel:
+    enabled: true
+  httpclient:
+    connection-timeout: 2000 # 调用其他服务时间为 2s
+    connection-timer-repeat: 3000 # 失败重试为 3s
+
+

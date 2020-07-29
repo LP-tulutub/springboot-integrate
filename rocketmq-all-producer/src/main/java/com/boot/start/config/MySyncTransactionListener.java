@@ -17,6 +17,8 @@ import org.springframework.stereotype.Component;
  * 法二：
  * 1. 传入就提交 + 保存提交的标记
  * 2. 如果久未提交回查 + 查询没有提交的标记信息 → commit(否则 rollback)
+ *
+ * 每一条消息标记确认都发送成功，前一条发送成功才发送这条，如果前一条没有成功，发送类型改为回滚消息进行回滚，后面的消息全部回滚
  */
 @Slf4j
 @Component

@@ -1,6 +1,5 @@
 package com.boot.tcc.action;
 
-import com.boot.pojo.Goods;
 import io.seata.rm.tcc.api.BusinessActionContext;
 import io.seata.rm.tcc.api.BusinessActionContextParameter;
 import io.seata.rm.tcc.api.LocalTCC;

@@ -26,13 +26,16 @@
     <module>dubbo-zk-seata-TM</module>
     <module>dubbo-zk-seata-RM1</module>
     <module>dubbo-zk-seata-RM2</module>
-      <module>dubbo-zk-tcc-seata-TM</module>
+    <module>dubbo-zk-tcc-seata-TM</module>
     <module>dubbo-zk-tcc-seata-RM1</module>
     <module>dubbo-zk-tcc-seata-RM2</module>
     <module>springcloud-alibaba-producer</module>
     <module>springcloud-alibaba-consumer</module>
     <module>springboot-webflux-consumer</module>
     <module>springboot-webflux-producer</module>
+    <module>mybatis-plus</module>
+      <module>rabbitmq-all-consumer</module>
+    <module>rabbitmq-all-producer</module>
   </modules>
 
   <name>Maven</name>

@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.boot</groupId>
-  <artifactId>activemq-queue-comsumer-demo</artifactId>
+  <artifactId>activemq-queue-consumer-demo</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>activemq-queue-consumer-demo</name>
